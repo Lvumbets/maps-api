@@ -43,12 +43,13 @@ def run():
     while running:  # запуск основного цикла
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # проверка на выход
-                running = False
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if pygame.key.get_pressed() == pygame.K_UP:
+                if event.key == pygame.K_PAGEUP and delta < 3:
                     delta += 0.1
+                if event.key == pygame.K_PAGEDOWN and delta - 0.1 > 0:
+                    delta -= 0.1
         # отображение ресурсов на экране
         screen.fill((0, 0, 0))
         render()
